@@ -10,6 +10,8 @@ void EncryptStringCesarus (string &, signed int);
 void EncryptStringVigener (string &, signed int);
 void EncryptASCII(string &, signed int);
 void GetFile(string);
+void DecryptCesarus(string &, signed int);
+void DecryptASCII(string &, signed int);
 std::string exec(const char* cmd);
 
 

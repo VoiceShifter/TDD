@@ -56,3 +56,30 @@ void GetFile(string FileName)
 
 }
 
+
+void DecryptCesarus(string& EncryptedString, signed int Key)
+{
+	for (char &Character : EncryptedString)
+	{
+                if ((int(Character)+Key) < 97)
+                {
+                        unsigned int Offset{97 - int(Character)+Key};
+                        Character=char(122 - Offset)
+                }
+                else
+                {
+                        Character -= Key;
+                }
+        }
+
+}
+
+void DecryptASCII(string& EncryptedString, signed int Key)
+{
+	for (char &Character : ToEncrypt)
+        {
+                Character -= Key;
+        }
+
+}
+
