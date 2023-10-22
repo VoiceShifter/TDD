@@ -30,21 +30,52 @@ void EncryptASCII(string &ToEncrypt, signed int Key)
         }
 };
 
+void DecryptCesarus(string& EncryptedString, signed int Key)
+{
+        for (char &Character : EncryptedString)
+        {
+                if ((int(Character)+Key) < 97)
+                {
+                        unsigned int Offset{97 - int(Character)+Key};
+                        Character=char(123 - Offset);
+                }
+                else
+                {
+                        Character -= Key;
+                }
+        }
+
+}
+
+void DecryptASCII(string& EncryptedString, signed int Key)
+{
+        for (char &Character : EncryptedString)
+        {
+                Character -= Key;
+        }
+
+}
+
 void Tests()
 {
-	std::string Test{"xyz"};
-	EncryptStringCesarus(Test, 1);
-	std::cout << Test << '\n';
+        std::string Test{"xyz"};
+        EncryptStringCesarus(Test, 1);
+        std::cout << Test << '\n';
         assert(Test== "yza");
         //assert(EncryptStringVigener("abc", 1) == "bdf");
-	Test="xyz";
+        Test="xyz";
         EncryptASCII(Test, 1);
-	std::cout << Test << '\n';
-	assert(Test== "yz{");
+        std::cout << Test << '\n';
+        assert(Test== "yz{");
 };
+
+
 
 signed int main()
 {
 	Tests();
 	return 0;	
 }
+
+
+
