@@ -39,9 +39,13 @@ void EncryptStringCesarus (string &ToEncrypt, signed int Key)
 
     	for (char &Character : ToEncrypt)
       	{
-		if ((int(Character)+Key) > 122)
+		if (int(Character) == 32)
 		{
-			unsigned int Offset{int(Character)+Key-122};
+			continue;
+		}
+		else if ((int(Character)+Key) > 122)
+		{
+			unsigned int Offset{int(Character)+Key-123};
 			Character=char(97 + Offset);
 		}
 		else
@@ -115,7 +119,11 @@ void DecryptCesarus(string& EncryptedString, signed int Key)
 {
 	for (char &Character : EncryptedString)
 	{
-                if ((int(Character)+Key) < 97)
+		if (int(Character) == 32)
+		{
+			continue;
+		}
+		else if ((int(Character) - Key) < 97)
                 {
                         unsigned int Offset{97 - int(Character)+Key};
                         Character=char(123 - Offset);
